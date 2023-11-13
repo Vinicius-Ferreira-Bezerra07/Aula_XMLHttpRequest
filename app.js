@@ -15,7 +15,7 @@ const buscarGatinhos = (e) => {
                 cats.forEach(cat => {
                     console.log("Aqui4");
                     const img = document.createElement('img')
-                    img.scr = cat.url
+                    img.src = cat.url
                     document.querySelector('#gatinhos').appendChild(img)
                 });
             } else {
