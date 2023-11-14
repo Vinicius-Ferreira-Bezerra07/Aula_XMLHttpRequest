@@ -15,7 +15,6 @@ const buscarGatinhos = (e) => {
                     img.src = cat.url
                     img.id = cat.id
                     document.querySelector('#gatinhos').appendChild(img)
-                    document.querySelector('#gatinhos').appendChild(img.id)
                 });
             } else {
                 alert('Erro na requisição')
@@ -25,5 +24,27 @@ const buscarGatinhos = (e) => {
     xhr.send()
 }
 
+const getMarcas = () => {
+    const tarefas = fetch('https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/data.json')
+
+    tarefas
+        .then(resposta => resposta.json())
+        .then(marcas => {
+            const ul = document.createElement('ul')
+            console.log(marcas);
+            marcas.forEach(marca => {
+                const li = document.createElement('li')
+                const logo = document.createElement('img')
+                logo.src = marca.image?.optimized
+                li.appendChild(logo)
+                ul.appendChild(li)
+            })
+            document.querySelector('#marc').appendChild(ul)
+        })
+        .catch(erro => {console.log(erro)})
+}
 const btnMostrar = document.querySelector('#mostrar-gatinhos')
 btnMostrar.addEventListener("click", buscarGatinhos)
+
+const btnMarcas = document.querySelector('#marcas')
+btnMarcas.addEventListener("click", getMarcas)
